@@ -10,27 +10,31 @@ class Directory extends Component {
         data
     }
 
-    handleNameFilter = event => {
-
-        let searchName = event.target.value
-
-        const data = this.state.data.filter(employee => employee.name.first === searchName)
+    handleClearForm = event => {
+        event.preventDefault() 
         this.setState({data})
-        console.log(data)
+    }
+
+    handleFormInput = event => {
+        event.preventDefault()
+        let value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({
+            [name]: value
+          });
     }
 
     handleFormSubmit = event => {
 
         event.preventDefault()
-        let searchName = event.target.value
-        console.log(event.target.value)
+        let searchName = this.state.firstName
+        console.log(event.target)
         const data = this.state.data.filter(employee => employee.name.first === searchName)
         this.setState({data})
         console.log(data)
         
-
     }
-
 
     render() {
         return (
@@ -42,10 +46,10 @@ class Directory extends Component {
                     <Form.Label>Search by name</Form.Label>
                     <Form.Control 
                     type="name" 
-                    placeholder="Enter firstname" 
+                    placeholder="Enter first name" 
                     value={this.state.firstName} 
                     name="firstName"
-                    onChange={this.handleFormSubmit}
+                    onChange={this.handleFormInput}
                     />
                     <Form.Text className="text-muted">
                         {/* We'll never share your email with anyone else. */}
@@ -56,6 +60,11 @@ class Directory extends Component {
                     variant="primary"
                     type="submit">
                     Search
+                </Button>
+                <Button 
+                    variant="primary"
+                    type="clear">
+                    Clear Results
                 </Button>
             </Form>
 
