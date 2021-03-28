@@ -14,8 +14,8 @@ function EmployeeCard(props) {
 
                 </Col>
                 <Col>
-                <Card.Text>{props.email}</Card.Text>
-                <Card.Text>{props.phone}</Card.Text>
+                <Card.Text>email: {props.email}</Card.Text>
+                <Card.Text>phone: {props.phone}</Card.Text>
                 </Col>
             </Row>
         </Card.Body>

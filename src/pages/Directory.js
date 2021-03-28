@@ -11,14 +11,20 @@ class Directory extends Component {
     }
 
     handleClearForm = event => {
-        event.preventDefault() 
+        event.preventDefault()
+        // let firstName = ""
+
+        // this.setState({
+        //     [firstName]: ""
+        //   });
         this.setState({data})
+
     }
 
     handleFormInput = event => {
         event.preventDefault()
         let value = event.target.value;
-        const name = event.target.name;
+        let name = event.target.name;
 
         this.setState({
             [name]: value
@@ -30,10 +36,27 @@ class Directory extends Component {
         event.preventDefault()
         let searchName = this.state.firstName
         console.log(event.target)
-        const data = this.state.data.filter(employee => employee.name.first === searchName)
+        let data = this.state.data.filter(employee => employee.name.first === searchName)
         this.setState({data})
         console.log(data)
         
+    }
+
+    handleArraySort = (event) => {
+        event.preventDefault()
+
+        // const sorted = data.sort((a, b) => b.name.first - a.name.first);
+        // console.log(sorted)
+        // this.setState(sorted);
+
+        data.sort( function( a, b ) {
+            a = a.name.first.toLowerCase();
+            b = b.name.first.toLowerCase();
+        
+            return a < b ? -1 : a > b ? 1 : 0;
+        });
+
+        this.setState(data);
     }
 
     render() {
@@ -41,9 +64,16 @@ class Directory extends Component {
             <div className="container">
                 <h2>Directory</h2>
                 
+                <select onChange={this.handleArraySort}>
+                    <option value="options">Sort options</option>
+                    <option value="sortByFirst">Sort by First name</option>
+                    <option value="sortByLast">Sort by last name</option>
+                </select>
+
                 <Form>
+                    
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Search by name</Form.Label>
+                    <Form.Label>Search by first name</Form.Label>
                     <Form.Control 
                     type="name" 
                     placeholder="Enter first name" 
@@ -61,9 +91,9 @@ class Directory extends Component {
                     type="submit">
                     Search
                 </Button>
-                <Button 
+                <Button onClick={this.handleClearForm}
                     variant="primary"
-                    type="clear">
+                    type="submit">
                     Clear Results
                 </Button>
             </Form>
