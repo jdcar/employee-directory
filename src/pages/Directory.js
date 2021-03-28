@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 import Employees from '../components/Employees'
 import data from "../data/data.json"
@@ -12,11 +14,8 @@ class Directory extends Component {
 
     handleClearForm = event => {
         event.preventDefault()
-        // let firstName = ""
-
-        // this.setState({
-        //     [firstName]: ""
-        //   });
+        this.state.firstName = ""
+        this.state.lastName = ""
         this.setState({ data })
 
     }
@@ -34,11 +33,29 @@ class Directory extends Component {
     handleFormSubmit = event => {
 
         event.preventDefault()
-        let searchName = this.state.firstName
-        console.log(event.target)
-        let data = this.state.data.filter(employee => employee.name.first === searchName)
-        this.setState({ data })
-        console.log(data)
+
+        // console.log(this.state.firstName)
+
+        if (this.state.firstName) {
+
+            let searchName = this.state.firstName
+            // console.log(event.target)
+            let data = this.state.data.filter(employee => employee.name.first === searchName)
+            this.setState({ data })
+            console.log(data)
+
+            if (data = []) {
+
+            }
+
+        }
+        else if (this.state.lastName) {
+            let searchName = this.state.lastName
+            // console.log(event.target)
+            let data = this.state.data.filter(employee => employee.name.last === searchName)
+            this.setState({ data })
+        }
+        // console.log(data)
 
     }
 
@@ -68,40 +85,48 @@ class Directory extends Component {
         return (
             <div className="container">
                 <h2>Directory</h2>
+                <Row>
+                    <Col>
+                        <select onChange={this.handleArraySort}>
+                            <option value="options">Sort options</option>
+                            <option value="sortByFirst">Sort by first name</option>
+                            <option value="sortByLast">Sort by last name</option>
+                        </select>
+                    </Col>
+                    <Col>
+                        <Form>
 
-                <select onChange={this.handleArraySort}>
-                    <option value="options">Sort options</option>
-                    <option value="sortByFirst">Sort by First name</option>
-                    <option value="sortByLast">Sort by last name</option>
-                </select>
+                            <Form.Group controlId="formBasicEmail">
+                                {/* <Form.Label>Search by first name</Form.Label> */}
+                                <Form.Control type="name" placeholder="Enter first name" value={this.state.firstName} name="firstName"
+                                    onChange={this.handleFormInput} />
+                                <Form.Text className="text-muted">
+                                    {/* We'll never share your email with anyone else. */}
+                                </Form.Text>
 
-                <Form>
+                                {/* <Form.Label>Search by last name</Form.Label> */}
+                                <Form.Control type="name" placeholder="Enter last name" value={this.state.lastName} name="lastName"
+                                    onChange={this.handleFormInput} />
+                                <Form.Text className="text-muted">
+                                    {/* We'll never share your email with anyone else. */}
+                                </Form.Text>
 
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Search by first name</Form.Label>
-                        <Form.Control
-                            type="name"
-                            placeholder="Enter first name"
-                            value={this.state.firstName}
-                            name="firstName"
-                            onChange={this.handleFormInput}
-                        />
-                        <Form.Text className="text-muted">
-                            {/* We'll never share your email with anyone else. */}
-                        </Form.Text>
-                    </Form.Group>
+                            </Form.Group>
 
-                    <Button onClick={this.handleFormSubmit}
-                        variant="primary"
-                        type="submit">
-                        Search
-                </Button>
-                    <Button onClick={this.handleClearForm}
-                        variant="primary"
-                        type="submit">
-                        Clear Results
-                </Button>
-                </Form>
+                            <Button onClick={this.handleFormSubmit} variant="primary" type="submit">
+                                Search
+                    </Button>
+                            <Button onClick={this.handleClearForm} variant="primary" type="submit">
+                                Clear Search
+                    </Button>
+                        </Form>
+                    </Col>
+                </Row>
+                <Row>
+                    <p> </p>
+                    <p> </p>
+                </Row>
+
 
                 {this.state.data.map(employee => (
                     <Employees
@@ -112,10 +137,20 @@ class Directory extends Component {
                         image={employee.picture.large}
                         key={employee.login.uuid}
                     />
+                    
 
                 ))}
-
+            <Row>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            </Row>
             </div>
+
         )
     }
 }
