@@ -6,7 +6,7 @@ function EmployeeCard(props) {
 
     return (
         <Card>
-        <Card.Header as="h5">{props.firstName} {props.lastName}</Card.Header>
+        <Card.Header as="h5" key= {props.id}>{props.firstName} {props.lastName}</Card.Header>
         <Card.Body>
             <Row>
                 <Col>
