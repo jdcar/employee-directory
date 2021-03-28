@@ -17,7 +17,7 @@ class Directory extends Component {
         // this.setState({
         //     [firstName]: ""
         //   });
-        this.setState({data})
+        this.setState({ data })
 
     }
 
@@ -28,7 +28,7 @@ class Directory extends Component {
 
         this.setState({
             [name]: value
-          });
+        });
     }
 
     handleFormSubmit = event => {
@@ -37,33 +37,38 @@ class Directory extends Component {
         let searchName = this.state.firstName
         console.log(event.target)
         let data = this.state.data.filter(employee => employee.name.first === searchName)
-        this.setState({data})
+        this.setState({ data })
         console.log(data)
-        
+
     }
 
     handleArraySort = (event) => {
         event.preventDefault()
+        if (event.target.value === "sortByFirst") {
+            data.sort(function (a, b) {
+                a = a.name.first.toLowerCase();
+                b = b.name.first.toLowerCase();
 
-        // const sorted = data.sort((a, b) => b.name.first - a.name.first);
-        // console.log(sorted)
-        // this.setState(sorted);
+                return a < b ? -1 : a > b ? 1 : 0;
+            });
 
-        data.sort( function( a, b ) {
-            a = a.name.first.toLowerCase();
-            b = b.name.first.toLowerCase();
-        
-            return a < b ? -1 : a > b ? 1 : 0;
-        });
+            this.setState(data);
+        } else if (event.target.value === "sortByLast") {
+            data.sort(function (a, b) {
+                a = a.name.last.toLowerCase();
+                b = b.name.last.toLowerCase();
 
-        this.setState(data);
+                return a < b ? -1 : a > b ? 1 : 0;
+            });
+            this.setState(data);
+        }
     }
 
     render() {
         return (
             <div className="container">
                 <h2>Directory</h2>
-                
+
                 <select onChange={this.handleArraySort}>
                     <option value="options">Sort options</option>
                     <option value="sortByFirst">Sort by First name</option>
@@ -71,32 +76,32 @@ class Directory extends Component {
                 </select>
 
                 <Form>
-                    
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Search by first name</Form.Label>
-                    <Form.Control 
-                    type="name" 
-                    placeholder="Enter first name" 
-                    value={this.state.firstName} 
-                    name="firstName"
-                    onChange={this.handleFormInput}
-                    />
-                    <Form.Text className="text-muted">
-                        {/* We'll never share your email with anyone else. */}
-                    </Form.Text>
-                </Form.Group>
 
-                <Button onClick={this.handleFormSubmit}
-                    variant="primary"
-                    type="submit">
-                    Search
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Search by first name</Form.Label>
+                        <Form.Control
+                            type="name"
+                            placeholder="Enter first name"
+                            value={this.state.firstName}
+                            name="firstName"
+                            onChange={this.handleFormInput}
+                        />
+                        <Form.Text className="text-muted">
+                            {/* We'll never share your email with anyone else. */}
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Button onClick={this.handleFormSubmit}
+                        variant="primary"
+                        type="submit">
+                        Search
                 </Button>
-                <Button onClick={this.handleClearForm}
-                    variant="primary"
-                    type="submit">
-                    Clear Results
+                    <Button onClick={this.handleClearForm}
+                        variant="primary"
+                        type="submit">
+                        Clear Results
                 </Button>
-            </Form>
+                </Form>
 
                 {this.state.data.map(employee => (
                     <Employees
@@ -105,7 +110,7 @@ class Directory extends Component {
                         phone={employee.phone}
                         email={employee.email}
                         image={employee.picture.large}
-                        key = {employee.login.uuid}
+                        key={employee.login.uuid}
                     />
 
                 ))}
