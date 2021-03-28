@@ -5,8 +5,8 @@ const Footers = () => {
   
     return (
       
-        <div class="footer">
-            <p class= "footer">Copyright {new Date().getFullYear()}</p>
+        <div className="footer">
+            <p className= "footer">Copyright {new Date().getFullYear()}</p>
         </div>
     )
 }
