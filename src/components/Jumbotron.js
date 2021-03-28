@@ -1,6 +1,7 @@
 import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
@@ -11,9 +12,9 @@ const Navbar = () => {
                 extra attention to featured content or information.
             </p>
             <p>
-            <Button variant="secondary" size="lg" active>
-    Employee Directory
-  </Button>
+                <Link to="/directory"><Button to="/directory" variant="secondary" size="lg" active>
+                    Employee Directory
+                </Button></Link>
             </p>
         </Jumbotron>
     )

@@ -11,6 +11,7 @@ import Directory from './pages/Directory'
 import './App.css';
 
 import Navbar from './components/Jumbotron';
+import Footers from './components/Footer'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <Footers />
     </Router>
     // <div>REact page</div>
   );
