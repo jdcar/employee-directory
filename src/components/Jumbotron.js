@@ -4,17 +4,22 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+
     return (
         <Jumbotron className="jumbotron">
-            <h1>Hello, world!</h1>
+            <h1>My Company</h1>
             <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
+                This is a company, people work here. There's a directory!
             </p>
             <p>
-                <Link to="/directory"><Button to="/directory" variant="secondary" size="lg" active>
+                <Link to="/"><Button variant="secondary" size="lg" active>
+                    Home
+                </Button></Link>{' '}
+                
+                <Link to="/directory"><Button variant="secondary" size="lg" active>
                     Employee Directory
                 </Button></Link>
+
             </p>
         </Jumbotron>
     )

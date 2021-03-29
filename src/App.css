@@ -5,6 +5,10 @@
     text-align: center;
 }
 
-/* .jumbotron {
-    background-image: url("../public/background.jpg");
-} */
+.jumbotron {
+    background-color: #CDDAD8 ;
+}
+
+.searchResults {
+    display: none;
+}

@@ -113,10 +113,13 @@ class Directory extends Component {
 
                             </Form.Group>
 
-                            <Button onClick={this.handleFormSubmit} variant="primary" type="submit">
+                            <Button 
+                            onClick={this.handleFormSubmit} 
+                            variant="primary" 
+                            type="submit">
                                 Search
-                    </Button>
-                            <Button onClick={this.handleClearForm} variant="primary" type="submit">
+                    </Button>{' '}
+                            <Button onClick={this.handleClearForm} variant="primary" type="Reset" value="Reset" >
                                 Clear Search
                     </Button>
                         </Form>
