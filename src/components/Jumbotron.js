@@ -7,7 +7,7 @@ const Navbar = () => {
 
     return (
         <Jumbotron className="jumbotron">
-            <h1>My Company</h1>
+            <h1 span className="headings">My Company</h1>
             <p>
                 This is a company, people work here. There's a directory!
             </p>

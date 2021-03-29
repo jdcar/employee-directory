@@ -1,5 +1,9 @@
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
 .footer {
-    background-color:cadetblue;
+    background-color:#919F89;
     position:sticky;
     margin: 0;
     text-align: center;
@@ -9,6 +13,29 @@
     background-color: #CDDAD8 ;
 }
 
-.searchResults {
+.search-results {
     display: none;
+    text-emphasis: bold;
+}
+
+.headings {
+    font-family: 'Kiwi Maru', serif;
+}
+
+.column-align {
+    text-align: right;
+}
+
+.searchBoxes {
+    width: 50%;
+}
+
+.searchButtons {
+    background-color: #5d686b;
+    border-color: #5d686b;
+}
+
+.searchButtons:hover {
+    background-color: #99a9ad;
+    border-color: #99a9ad;
 }

@@ -9,14 +9,22 @@ import data from "../data/data.json"
 
 class Directory extends Component {
     state = {
-        data
+        data,
+        searchResult: false,
+        firstName: "",
+        lastName: "",
+        noResults: false,
+        retrySearch: ""
     }
 
     handleClearForm = event => {
         event.preventDefault()
-        this.state.firstName = ""
-        this.state.lastName = ""
+        // this.state.searchResult = false
+        this.setState({searchResult: false})
+        this.setState({firstName: ""})
+        this.setState({lastName: ""})
         this.setState({ data })
+        this.setState({noResults: false})
 
     }
 
@@ -34,6 +42,7 @@ class Directory extends Component {
 
         event.preventDefault()
 
+        this.setState({searchResult: true})
         // console.log(this.state.firstName)
 
         if (this.state.firstName) {
@@ -44,7 +53,11 @@ class Directory extends Component {
             this.setState({ data })
             console.log(data)
 
-            if (data = []) {
+            if (data[0] == null) {
+                // Add no results to the page
+                console.log("no result")
+                this.setState({noResults: true})
+                this.setState({searchResult: true})
 
             }
 
@@ -54,6 +67,14 @@ class Directory extends Component {
             // console.log(event.target)
             let data = this.state.data.filter(employee => employee.name.last === searchName)
             this.setState({ data })
+            
+            if (data[0] == null) {
+                // Add no results to the page
+                console.log("no result")
+                this.setState({noResults: true})
+                this.setState({searchResult: true})
+
+            }
         }
         // console.log(data)
 
@@ -63,8 +84,8 @@ class Directory extends Component {
         event.preventDefault()
         if (event.target.value === "sortByFirst") {
             data.sort(function (a, b) {
-                a = a.name.first.toLowerCase();
-                b = b.name.first.toLowerCase();
+                a = a.name.first.toLowerCase()
+                b = b.name.first.toLowerCase()
 
                 return a < b ? -1 : a > b ? 1 : 0;
             });
@@ -82,11 +103,23 @@ class Directory extends Component {
     }
 
     render() {
+      
+        let button
+        if (!this.state.searchResult) {
+            button = <Button className="searchButtons" onClick={this.handleFormSubmit} variant="primary" type="submit">Search</Button>
+        } 
+
+        let retrySearch
+        if (this.state.noResults) {
+            retrySearch = <p className="no-result">No results, please try again!</p> 
+            
+        }
         return (
             <div className="container">
-                <h2>Directory</h2>
+                <h2 span className="headings">Directory</h2>
                 <Row>
-                    <Col>
+
+                    <Col className="column-align">
                         <select onChange={this.handleArraySort}>
                             <option value="options">Sort options</option>
                             <option value="sortByFirst">Sort by first name</option>
@@ -96,7 +129,7 @@ class Directory extends Component {
                     <Col>
                         <Form>
 
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group className="searchBoxes" controlId="formBasicEmail">
                                 {/* <Form.Label>Search by first name</Form.Label> */}
                                 <Form.Control type="name" placeholder="Enter first name" value={this.state.firstName} name="firstName"
                                     onChange={this.handleFormInput} />
@@ -112,16 +145,16 @@ class Directory extends Component {
                                 </Form.Text>
 
                             </Form.Group>
+                            {' '}
 
-                            <Button 
-                            onClick={this.handleFormSubmit} 
-                            variant="primary" 
-                            type="submit">
-                                Search
-                    </Button>{' '}
-                            <Button onClick={this.handleClearForm} variant="primary" type="Reset" value="Reset" >
+                            {button}
+                            <Button
+                                onClick={this.handleClearForm} 
+                                variant="primary"
+                                type="Reset"
+                                value="Reset" >
                                 Clear Search
-                    </Button>
+                            </Button>
                         </Form>
                     </Col>
                 </Row>
@@ -130,7 +163,7 @@ class Directory extends Component {
                     <p> </p>
                 </Row>
 
-
+                {retrySearch}
                 {this.state.data.map(employee => (
                     <Employees
                         firstName={employee.name.first}
@@ -140,18 +173,25 @@ class Directory extends Component {
                         image={employee.picture.large}
                         key={employee.login.uuid}
                     />
-                    
+
 
                 ))}
-            <Row>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            </Row>
+                <Row>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </Row>
             </div>
 
         )
