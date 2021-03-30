@@ -3,6 +3,7 @@
 * https://github.com/jdcar/employee-directory
 ## Table of Contents
 * [Description](#description)
+* [License](#license)
 * [Questions](#questions)
 * [Screenshots](#screenshots)
 ## Description
@@ -13,7 +14,6 @@ Watch this video to see how the website works: https://drive.google.com/file/d/1
 ISC. Copyright (c) 2021 Jamie Carlstone
 ## Questions
 * https://github.com/jdcar
-* Email: 
 ## Screenshots
-* ![Directory](/screenshots/screenshot-1.JPG "Directory")
-* ![Home](/screenshots/screenshot-2.JPG "Home")
+![Directory](/screenshots/screenshot-1.JPG "Directory")
+![Home](/screenshots/screenshot-2.JPG "Home")
