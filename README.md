@@ -1,5 +1,5 @@
 # Employee Directory with React [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-* https://jdcar.github.io/
+* https://jdcar.github.io/employee-directory/
 * https://github.com/jdcar/employee-directory
 ## Table of Contents
 * [Description](#description)
